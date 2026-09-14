@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinShield | AI-Powered AML Investigation & Financial Crime Platform</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="css/finshield.css">
+</head>
+<body>
+
+  <div id="app-root">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="#" class="brand-container" onclick="FinShieldApp.switchModule('dashboard')">
+          <div class="brand-logo">F</div>
+          <div class="brand-name">FIN<span>SHIELD</span></div>
+        </a>
+        <button id="sidebar-toggle-btn" class="sidebar-toggle-btn" title="Toggle Sidebar">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Operations</div>
+        
+        <a href="#" class="nav-item active" data-module="dashboard">
+          <div class="nav-item-icon"><i class="fas fa-chart-line"></i></div>
+          <span class="nav-item-text">Dashboard</span>
+        </a>
+
+        <a href="#" class="nav-item" data-module="alerts">
+          <div class="nav-item-icon"><i class="fas fa-bell"></i></div>
+          <span class="nav-item-text">Alerts</span>
+          <span class="nav-item-badge critical">127</span>
+        </a>
+
+        <a href="#" class="nav-item" data-module="cases">
+          <div class="nav-item-icon"><i class="fas fa-briefcase"></i></div>
+          <span class="nav-item-text">Cases</span>
+          <span class="nav-item-badge">89</span>
+        </a>
+
+        <a href="#" class="nav-item" data-module="customers">
+          <div class="nav-item-icon"><i class="fas fa-user-shield"></i></div>
+          <span class="nav-item-text">Customers 360</span>
+        </a>
+
+        <a href="#" class="nav-item" data-module="transactions">
+          <div class="nav-item-icon"><i class="fas fa-exchange-alt"></i></div>
+          <span class="nav-item-text">Transactions</span>
+        </a>
+
+        <div class="nav-section-title">Intelligence</div>
+
+        <a href="#" class="nav-item" data-module="case_workspace">
+          <div class="nav-item-icon"><i class="fas fa-microscope"></i></div>
+          <span class="nav-item-text">Case Workspace</span>
+        </a>
+
+        <a href="#" class="nav-item" data-module="ai_investigator">
+          <div class="nav-item-icon"><i class="fas fa-robot"></i></div>
+          <span class="nav-item-text">AI Investigator</span>
+        </a>
+
+        <a href="#" class="nav-item" data-module="network">
+          <div class="nav-item-icon"><i class="fas fa-project-diagram"></i></div>
+          <span class="nav-item-text">Entity Graph</span>
+        </a>
+
+        <a href="#" class="nav-item" data-module="rag">
+          <div class="nav-item-icon"><i class="fas fa-book"></i></div>
+          <span class="nav-item-text">RAG Knowledge</span>
+        </a>
+
+        <div class="nav-section-title">Compliance</div>
+
+        <a href="#" class="nav-item" data-module="sar">
+          <div class="nav-item-icon"><i class="fas fa-file-invoice"></i></div>
+          <span class="nav-item-text">SAR Filing</span>
+          <span class="nav-item-badge">18</span>
+        </a>
+
+        <a href="#" class="nav-item" data-module="rules">
+          <div class="nav-item-icon"><i class="fas fa-sliders-h"></i></div>
+          <span class="nav-item-text">AML Rules</span>
+        </a>
+
+        <a href="#" class="nav-item" data-module="audit">
+          <div class="nav-item-icon"><i class="fas fa-history"></i></div>
+          <span class="nav-item-text">Audit Trail</span>
+        </a>
+
+        <a href="#" class="nav-item" data-module="admin">
+          <div class="nav-item-icon"><i class="fas fa-cogs"></i></div>
+          <span class="nav-item-text">Administration</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="system-status-indicator">
+          <span class="status-dot"></span>
+          <span class="nav-item-text">PROD • API Online</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN APPLICATION WRAPPER -->
+    <main class="app-main">
+      
+      <!-- TOP HEADER NAVBAR -->
+      <header class="app-header">
+        <div class="header-left">
+          <div class="header-page-title" id="header-page-title">
+            <i class="fas fa-chart-line"></i> AML Operations Dashboard
+          </div>
+          <button class="global-search-btn" id="global-search-btn">
+            <i class="fas fa-search"></i>
+            <span>Search Customer, Alert, Case...</span>
+            <span class="search-kbd">Ctrl K</span>
+          </button>
+        </div>
+
+        <div class="header-right">
+          <button class="copilot-trigger-btn" id="copilot-shortcut-btn">
+            <i class="fas fa-robot"></i>
+            <span>AI Copilot</span>
+          </button>
+
+          <button class="action-icon-btn" onclick="FinShieldApp.switchModule('alerts')" title="Alert Notifications">
+            <i class="fas fa-bell"></i>
+            <span class="badge-dot"></span>
+          </button>
+
+          <div class="user-profile-pill" onclick="FinShieldApp.switchModule('admin')">
+            <div class="user-avatar">SJ</div>
+            <div class="user-info">
+              <span class="user-name">Sarah Jenkins</span>
+              <span class="user-role">Senior AML Investigator</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE BODY WORKSPACE CONTAINER -->
+      <div class="page-container" id="page-container">
+        <!-- Dynamic module HTML injected by JS -->
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- GLOBAL SEARCH MODAL (Ctrl + K) -->
+  <div class="modal-backdrop" id="search-modal-backdrop" onclick="if(event.target===this) FinShieldApp.closeModals()">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span style="font-size:14px; font-weight:700;"><i class="fas fa-search" style="color:var(--color-primary);"></i> Global Entity & Case Search</span>
+        <button class="btn btn-outline btn-sm" onclick="FinShieldApp.closeModals()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="search-modal-input" class="form-input" placeholder="Type Customer Name, Alert ID (ALR-...), Case ID (CASE-...), Transaction ID..." style="width:100%; font-size:14px; padding:10px 14px;">
+        
+        <div style="margin-top:16px; display:flex; flex-direction:column; gap:8px;">
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--text-muted);">Quick Suggestions</div>
+          
+          <div style="background:var(--bg-surface-elevated); padding:10px 12px; border-radius:6px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;" onclick="FinShieldApp.closeModals(); FinShieldApp.openCaseWorkspace('CASE-1784086842884');">
+            <div>
+              <span class="font-mono" style="color:var(--color-primary); font-weight:700;">CASE-1784086842884</span>
+              <span style="color:var(--text-primary); font-weight:600; margin-left:8px;">Vikramaditya Rao</span>
+            </div>
+            <span class="badge badge-high">HIGH RISK</span>
+          </div>
+
+          <div style="background:var(--bg-surface-elevated); padding:10px 12px; border-radius:6px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;" onclick="FinShieldApp.closeModals(); FinShieldApp.openAlertInvestigation('ALR-10283');">
+            <div>
+              <span class="font-mono" style="color:var(--color-primary); font-weight:700;">ALR-10283</span>
+              <span style="color:var(--text-primary); font-weight:600; margin-left:8px;">Rapid Movement of Funds</span>
+            </div>
+            <span class="badge badge-critical">CRITICAL</span>
+          </div>
+
+          <div style="background:var(--bg-surface-elevated); padding:10px 12px; border-radius:6px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;" onclick="FinShieldApp.closeModals(); FinShieldApp.openCustomer360('CUST-99201');">
+            <div>
+              <span class="font-mono" style="color:var(--text-muted);">CUST-99201</span>
+              <span style="color:var(--text-primary); font-weight:600; margin-left:8px;">Vikramaditya Rao (Customer 360)</span>
+            </div>
+            <span class="badge badge-low">STORED LOW</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAR GENERATOR MODAL -->
+  <div class="modal-backdrop" id="sar-modal-backdrop" onclick="if(event.target===this) FinShieldApp.closeModals()">
+    <div class="modal-box" style="max-width:750px;">
+      <div class="modal-header">
+        <span style="font-size:14px; font-weight:700;"><i class="fas fa-file-invoice" style="color:var(--severity-high-fg);"></i> Suspicious Activity Report (SAR) Assistant</span>
+        <button class="btn btn-outline btn-sm" onclick="FinShieldApp.closeModals()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="warning-callout" style="margin-bottom:14px;">
+          <i class="fas fa-user-check" style="color:var(--severity-high-fg); margin-right:6px;"></i>
+          <strong>MANDATORY LEGAL SAFEGUARD:</strong> FinShield AI assists with SAR narrative drafting based on case evidence. FinShield AI will <u>NEVER</u> auto-submit a SAR to regulatory authorities without explicit human investigator sign-off and approval signature.
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div>
+            <label style="font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Subject Customer</label>
+            <input type="text" class="form-input" value="Vikramaditya Rao (CUST-99201)" readonly style="width:100%; margin-top:4px;">
+          </div>
+
+          <div>
+            <label style="font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Primary Suspicious Activity Code</label>
+            <select class="form-select" style="width:100%; margin-top:4px;">
+              <option selected>Pass-through / Rapid Movement of Funds to Unverified Endpoints</option>
+              <option>Structuring below Currency Transaction Reporting limit</option>
+              <option>PEP / High Risk Jurisdiction Wire</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">AI-Generated SAR Narrative Draft</label>
+            <textarea class="form-input" rows="6" style="width:100%; margin-top:4px; font-family:var(--font-mono); font-size:11px; line-height:1.5;">Between August 15 and August 17, 2026, subject Vikramaditya Rao (CUST-99201) engaged in rapid pass-through of funds totaling ₹1,780,100. Inbound credits originating from registered entities were liquidated within 12 minutes of deposit to unverified crypto wallet endpoints (#0x82a1). This behavior is inconsistent with the subject's stated occupation as an Independent Software Consultant and stored KYC Tier 1 limits.</textarea>
+          </div>
+
+          <div style="background:var(--bg-darkest); padding:10px 12px; border-radius:6px; border:1px solid var(--border-muted); display:flex; align-items:center; gap:10px;">
+            <input type="checkbox" id="sar-investigator-confirm" style="cursor:pointer;">
+            <label for="sar-investigator-confirm" style="font-size:12px; color:var(--text-primary); cursor:pointer;">
+              I, <strong>Sarah Jenkins (Senior AML Investigator)</strong>, have verified the evidence, reviewed the narrative, and explicitly authorize this SAR draft for compliance submission.
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" onclick="FinShieldApp.closeModals()">Cancel</button>
+        <button class="btn btn-primary btn-sm" onclick="if(document.getElementById('sar-investigator-confirm').checked){ alert('SAR draft SAR-2026-089 submitted to Compliance Officer review queue.'); FinShieldApp.closeModals(); } else { alert('Please check the investigator sign-off verification box before proceeding.'); }"><i class="fas fa-check"></i> Authorize & Submit SAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

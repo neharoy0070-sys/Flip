@@ -31,3 +31,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### FinShield local files ###
+uploads/
+*.log
+
+### Local configuration ###
+src/main/resources/application.properties
+src/main/resources/application.properties.backup
+.env
