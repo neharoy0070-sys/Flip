@@ -1,0 +1,18 @@
+services:
+  finshield-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: finshield-backend-compose
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    env_file:
+      - .env
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5433/aml_db
+      SPRING_DATASOURCE_USERNAME: aml_user
+      SPRING_AI_OLLAMA_BASE_URL: http://host.docker.internal:11434
+      SPRING_AI_OLLAMA_CHAT_OPTIONS_MODEL: llama3.2
+      SPRING_AI_OLLAMA_EMBEDDING_OPTIONS_MODEL: nomic-embed-text
+    ports:
+      - "8080:8080"

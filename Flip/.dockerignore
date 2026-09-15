@@ -1,0 +1,11 @@
+target/
+uploads/
+.git/
+.gitignore
+.idea/
+*.log
+
+src/main/resources/application.properties
+src/main/resources/application.properties.backup
+
+README.md
